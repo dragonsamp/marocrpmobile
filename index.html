@@ -758,6 +758,18 @@
             display: block;
         }
         
+        /* New styles for video links */
+        .video-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: transform 0.3s;
+        }
+        
+        .video-link:hover {
+            transform: scale(1.03);
+        }
+        
         /* Responsive Design for Tablets */
         @media (min-width: 768px) {
             .container {
@@ -1033,40 +1045,49 @@
         </div>
     </section>
 
-    <!-- Videos Section -->
+    <!-- Videos Section with Links -->
     <section class="videos" id="videos">
         <div class="container">
             <h2 class="section-title">فيديوهات التركيب</h2>
             <div class="video-grid">
-                <div class="video-card">
-                    <div class="video-thumbnail">
-                        <i class="fas fa-play-circle"></i>
+                <!-- Video 1 -->
+                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="video-link" target="_blank">
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <div class="video-info">
+                            <h3>طريقة تثبيت SA-MP NORMAL</h3>
+                            <p>شرح مفصل لتثبيت النسخة العادية على جميع الأجهزة</p>
+                        </div>
                     </div>
-                    <div class="video-info">
-                        <h3>طريقة تثبيت SA-MP NORMAL</h3>
-                        <p>شرح مفصل لتثبيت النسخة العادية على جميع الأجهزة</p>
-                    </div>
-                </div>
+                </a>
                 
-                <div class="video-card">
-                    <div class="video-thumbnail">
-                        <i class="fas fa-play-circle"></i>
+                <!-- Video 2 -->
+                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="video-link" target="_blank">
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <div class="video-info">
+                            <h3>طريقة تثبيت SA-MP FIVEM</h3>
+                            <p>دليل كامل لتثبيت النسخة المطورة مع الميزات الجديدة</p>
+                        </div>
                     </div>
-                    <div class="video-info">
-                        <h3>طريقة تثبيت SA-MP FIVEM</h3>
-                        <p>دليل كامل لتثبيت النسخة المطورة مع الميزات الجديدة</p>
-                    </div>
-                </div>
+                </a>
                 
-                <div class="video-card">
-                    <div class="video-thumbnail">
-                        <i class="fas fa-play-circle"></i>
+                <!-- Video 3 -->
+                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="video-link" target="_blank">
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <div class="video-info">
+                            <h3>طريقة تثبيت SA-MP OLD</h3>
+                            <p>كيفية تثبيت النسخة الاحترافية واستخدام نظام التصويب التلقائي</p>
+                        </div>
                     </div>
-                    <div class="video-info">
-                        <h3>طريقة تثبيت SA-MP OLD</h3>
-                        <p>كيفية تثبيت النسخة الاحترافية واستخدام نظام التصويب التلقائي</p>
-                    </div>
-                </div>
+                </a>
             </div>
         </div>
     </section>
