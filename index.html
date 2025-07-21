@@ -380,6 +380,8 @@
             display: flex;
             flex-direction: column;
             gap: 25px;
+            max-width: 800px;
+            margin: 0 auto;
         }
         
         .version-card {
@@ -476,6 +478,8 @@
             flex-direction: column;
             gap: 25px;
             margin-top: 30px;
+            max-width: 800px;
+            margin: 30px auto 0;
         }
         
         .video-card {
@@ -837,6 +841,7 @@
             .version-cards {
                 flex-direction: row;
                 flex-wrap: wrap;
+                max-width: 100%;
             }
             
             .version-card {
@@ -847,6 +852,7 @@
             .video-grid {
                 flex-direction: row;
                 flex-wrap: wrap;
+                max-width: 100%;
             }
             
             .video-card {
@@ -878,11 +884,11 @@
             }
             
             .version-card {
-                flex: 1 1 calc(33.333% - 20px);
+                flex: 1 1 calc(50% - 20px);
             }
             
             .video-card {
-                flex: 1 1 calc(33.333% - 20px);
+                flex: 1 1 calc(50% - 20px);
             }
         }
     </style>
@@ -978,12 +984,12 @@
         </div>
     </section>
 
-    <!-- Versions Section with New Names -->
+    <!-- Versions Section - Only NORMAL and OLD -->
     <section class="versions" id="versions">
         <div class="container">
             <h2 class="section-title">النسخ المميزة</h2>
             <div class="version-cards">
-                <!-- Version 1 -->
+                <!-- Version 1 - NORMAL -->
                 <div class="version-card">
                     <div class="card-header">
                         <h3>SA-MP NORMAL</h3>
@@ -1002,27 +1008,7 @@
                     </div>
                 </div>
                 
-                <!-- Version 2 -->
-                <div class="version-card">
-                    <div class="card-header">
-                        <h3>SA-MP FIVEM</h3>
-                        <div class="version">الإصدار 1.2</div>
-                    </div>
-                    <div class="card-body">
-                        <ul class="features-list">
-                            <li><i class="fas fa-gem"></i> كل ميزات النسخة العادية</li>
-                            <li><i class="fas fa-gem"></i> جرافيك واقعي عالي الدقة</li>
-                            <li><i class="fas fa-gem"></i> أدوات حصرية للاعبين</li>
-                            <li><i class="fas fa-gem"></i> نظام تصويب تلقائي متقدم</li>
-                            <li><i class="fas fa-gem"></i> خفة وسلاسة في اللعبة</li>
-                            <li><i class="fas fa-gem"></i> تدعم إضافة المودات</li>
-                            <li><i class="fas fa-gem"></i> تحديثات أسبوعية</li>
-                        </ul>
-                        <a href="#" class="download-btn">تحميل النسخة <i class="fas fa-download"></i></a>
-                    </div>
-                </div>
-                
-                <!-- Version 3 -->
+                <!-- Version 3 - OLD -->
                 <div class="version-card">
                     <div class="card-header">
                         <h3>SA-MP OLD</h3>
@@ -1030,7 +1016,7 @@
                     </div>
                     <div class="card-body">
                         <ul class="features-list">
-                            <li><i class="fas fa-crown"></i> كل ميزات النسختين السابقتين</li>
+                            <li><i class="fas fa-crown"></i> كل ميزات النسخة العادية</li>
                             <li><i class="fas fa-crown"></i> نظام تصويب تلقائي متقدم (AimBot)</li>
                             <li><i class="fas fa-crown"></i> أدوات إدارية حصرية</li>
                             <li><i class="fas fa-crown"></i> إشعارات مخصصة</li>
@@ -1045,12 +1031,12 @@
         </div>
     </section>
 
-    <!-- Videos Section with Links -->
+    <!-- Videos Section - Only NORMAL and OLD -->
     <section class="videos" id="videos">
         <div class="container">
             <h2 class="section-title">فيديوهات التركيب</h2>
             <div class="video-grid">
-                <!-- Video 1 -->
+                <!-- Video 1 - NORMAL -->
                 <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="video-link" target="_blank">
                     <div class="video-card">
                         <div class="video-thumbnail">
@@ -1063,20 +1049,7 @@
                     </div>
                 </a>
                 
-                <!-- Video 2 -->
-                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="video-link" target="_blank">
-                    <div class="video-card">
-                        <div class="video-thumbnail">
-                            <i class="fas fa-play-circle"></i>
-                        </div>
-                        <div class="video-info">
-                            <h3>طريقة تثبيت SA-MP FIVEM</h3>
-                            <p>دليل كامل لتثبيت النسخة المطورة مع الميزات الجديدة</p>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- Video 3 -->
+                <!-- Video 3 - OLD -->
                 <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="video-link" target="_blank">
                     <div class="video-card">
                         <div class="video-thumbnail">
@@ -1129,17 +1102,17 @@
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        نعم، جميع النسخ الثلاث مجانية بالكامل ولا تتضمن أي تكاليف خفية. نحن نؤمن بمجتمع قوي وندعم لاعبينا.
+                        نعم، جميع النسخ مجانية بالكامل ولا تتضمن أي تكاليف خفية. نحن نؤمن بمجتمع قوي وندعم لاعبينا.
                     </div>
                 </div>
                 
                 <div class="faq-item">
                     <div class="faq-question">
-                        ما الفرق بين النسخ الثلاث؟
+                        ما الفرق بين النسختين المتبقيتين؟
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        النسخة العادية (NORMAL) توفر تجربة متوازنة، النسخة FIVEM تضيف رسومات وميزات إضافية، والنسخة OLD تحتوي على نظام تصويب تلقائي وميزات حصرية.
+                        النسخة العادية (NORMAL) توفر تجربة متوازنة ومناسبة للمبتدئين، بينما النسخة OLD تحتوي على نظام تصويب تلقائي وميزات حصرية للاعبين المتقدمين.
                     </div>
                 </div>
                 
@@ -1208,7 +1181,6 @@
                     <h3>النسخ المميزة</h3>
                     <ul class="footer-links">
                         <li><a href="#versions"><i class="fas fa-download"></i> SA-MP NORMAL</a></li>
-                        <li><a href="#versions"><i class="fas fa-download"></i> SA-MP FIVEM</a></li>
                         <li><a href="#versions"><i class="fas fa-download"></i> SA-MP OLD</a></li>
                         <li><a href="#faq"><i class="fas fa-question-circle"></i> الأسئلة الشائعة</a></li>
                     </ul>
