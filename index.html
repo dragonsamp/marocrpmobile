@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>LAST CITY | SA-MP MOBILE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        :root {
+            --primary: #1a0a2e;
+            --secondary: #3d1766;
+            --accent: #a855f7;
+            --accent-light: #c084fc;
+            --light: #f0e6ff;
+            --dark: #0d0618;
+            --gold: #ffd700;
+            --whatsapp: #25D366;
+            --youtube: #FF0000;
+            --discord: #5865F2;
+            --glass: rgba(26, 10, 46, 0.7);
+            --glass-light: rgba(61, 23, 102, 0.5);
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: var(--light);
+            min-height: 100vh;
+            background-attachment: fixed;
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Mobile First Header - Improved Design */
+        header {
+            background-color: rgba(26, 10, 46, 0.95);
+            padding: 12px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.2);
+            border-bottom: 2px solid var(--accent);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--accent), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Enhanced Mobile Menu */
+        .menu-toggle {
+            display: block;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--light);
+            z-index: 110;
+            transition: transform 0.3s;
+        }
+        
+        .menu-toggle:hover {
+            transform: scale(1.1);
+        }
+        
+        .nav-links {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 85%;
+            height: 100vh;
+            background: rgba(26, 10, 46, 0.98);
+            backdrop-filter: blur(15px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            transition: all 0.5s ease;
+            z-index: 100;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.5);
+            padding-top: 80px;
+            overflow-y: auto;
+        }
+        
+        .nav-links.active {
+            right: 0;
+        }
+        
+        .nav-links li {
+            margin: 10px 0;
+            width: 100%;
+            text-align: center;
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.4s ease;
+        }
+        
+        .nav-links.active li {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .nav-links li:nth-child(1) { transition-delay: 0.1s; }
+        .nav-links li:nth-child(2) { transition-delay: 0.2s; }
+        .nav-links li:nth-child(3) { transition-delay: 0.3s; }
+        .nav-links li:nth-child(4) { transition-delay: 0.4s; }
+        .nav-links li:nth-child(5) { transition-delay: 0.5s; }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            display: block;
+            padding: 15px;
+            transition: all 0.3s;
+            border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+            position: relative;
+        }
+        
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 5px;
+            height: 0;
+            background: var(--accent);
+            transition: height 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-light);
+            background: rgba(168, 85, 247, 0.1);
+        }
+        
+        .nav-links a:hover::before {
+            height: 100%;
+        }
+        
+        .close-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.8rem;
+            color: var(--light);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .close-menu:hover {
+            transform: rotate(90deg);
+            color: var(--accent-light);
+        }
+        
+        /* Hero Section - Mobile Optimized */
+        .hero {
+            padding: 80px 0 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://i.pinimg.com/originals/9f/4e/1f/9f4e1f0b5c1c9e6b3c7e7a0e8e3a3b3a.jpg') no-repeat center center/cover;
+            filter: brightness(0.3) blur(2px);
+            z-index: -2;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(26, 10, 46, 0.9), rgba(61, 23, 102, 0.8));
+            z-index: -1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            width: 95%;
+            margin: 0 auto;
+            padding: 30px;
+            background: var(--glass);
+            border-radius: 20px;
+            border: 2px solid var(--accent);
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.4);
+            backdrop-filter: blur(5px);
+        }
+        
+        .hero h1 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--accent-light), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.3;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: #e0d0ff;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 25px;
+        }
+        
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-5px) scale(1.1);
+        }
+        
+        .social-icon.whatsapp {
+            background: var(--whatsapp);
+        }
+        
+        .social-icon.youtube {
+            background: var(--youtube);
+        }
+        
+        .social-icon.discord {
+            background: var(--discord);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--accent), var(--secondary));
+            color: white;
+            padding: 14px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s;
+            border: none;
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(168, 85, 247, 0.6);
+        }
+        
+        .btn-en {
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Features Section - Mobile Optimized */
+        .features {
+            padding: 60px 0;
+            text-align: center;
+            background: rgba(13, 6, 24, 0.8);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 1.8rem;
+            position: relative;
+            color: var(--gold);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--accent), var(--accent-light));
+            border-radius: 2px;
+        }
+        
+        .features-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .feature-card {
+            background: var(--glass-light);
+            border-radius: 15px;
+            padding: 25px 20px;
+            text-align: center;
+            border: 2px solid var(--accent);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(168, 85, 247, 0.5);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--gold);
+        }
+        
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--accent-light);
+        }
+        
+        .feature-card p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        /* Versions Section - Mobile Optimized */
+        .versions {
+            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .version-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .version-card {
+            background: rgba(45, 54, 88, 0.15);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s;
+            border: 2px solid var(--accent);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        
+        .version-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(168, 85, 247, 0.5);
+        }
+        
+        .card-header {
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid var(--accent);
+        }
+        
+        .card-header h3 {
+            font-size: 1.6rem;
+            margin-bottom: 5px;
+            color: var(--gold);
+        }
+        
+        .card-header .version {
+            color: var(--accent-light);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        .card-body {
+            padding: 20px;
+        }
+        
+        .features-list {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .features-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            text-align: right;
+        }
+        
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .features-list li i {
+            color: var(--accent);
+            font-size: 1.1rem;
+            min-width: 20px;
+        }
+        
+        .download-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background: linear-gradient(45deg, var(--accent), var(--secondary));
+            color: white;
+            padding: 12px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: 0 4px 10px rgba(168, 85, 247, 0.3);
+            transition: all 0.3s;
+        }
+        
+        .download-btn:hover {
+            background: linear-gradient(45deg, var(--accent-light), var(--accent));
+            transform: translateY(-3px);
+        }
+        
+        /* Videos Section - Mobile Optimized */
+        .videos {
+            padding: 60px 0;
+            background: rgba(13, 6, 24, 0.8);
+        }
+        
+        .video-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .video-card {
+            background: var(--glass);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid var(--accent);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .video-thumbnail {
+            height: 180px;
+            background: linear-gradient(45deg, var(--accent), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            opacity: 0.8;
+        }
+        
+        .video-info {
+            padding: 20px;
+        }
+        
+        .video-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: var(--gold);
+        }
+        
+        .video-info p {
+            font-size: 0.95rem;
+        }
+        
+        /* Instructions Section - Mobile Optimized */
+        .instructions {
+            padding: 60px 0;
+            background: url('https://i.pinimg.com/originals/3a/3d/3e/3a3d3e7e7b3b3b3b3b3b3b3b3b3b3b3e.jpg') no-repeat center center/cover;
+            position: relative;
+        }
+        
+        .instructions::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 10, 46, 0.85);
+        }
+        
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-top: 40px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step {
+            background: var(--glass-light);
+            border-radius: 15px;
+            padding: 25px 20px;
+            text-align: center;
+            border: 2px solid var(--accent);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s;
+        }
+        
+        .step:hover {
+            transform: translateY(-5px);
+        }
+        
+        .step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, var(--accent), var(--secondary));
+            color: white;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 0 auto 15px;
+            box-shadow: 0 0 15px var(--accent);
+        }
+        
+        .step h3 {
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            color: var(--gold);
+        }
+        
+        .step p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        /* FAQ Section - Mobile Optimized */
+        .faq {
+            padding: 60px 0;
+        }
+        
+        .faq-container {
+            max-width: 100%;
+            margin: 30px auto 0;
+        }
+        
+        .faq-item {
+            background: var(--glass-light);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            border: 2px solid var(--accent);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+        }
+        
+        .faq-item:hover {
+            border-color: var(--gold);
+        }
+        
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            background: rgba(45, 54, 88, 0.2);
+        }
+        
+        .faq-question i {
+            transition: transform 0.4s;
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+        
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s;
+            background: rgba(26, 10, 46, 0.4);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 500px;
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        /* Footer - Mobile Optimized */
+        footer {
+            background: var(--dark);
+            padding: 50px 0 30px;
+            border-top: 2px solid var(--accent);
+            background: linear-gradient(to bottom, var(--primary), var(--dark));
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+            color: var(--gold);
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(to right, var(--accent), var(--accent-light));
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #d0c0f0;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-light);
+            transform: translateX(5px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1.2rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .social-links a.whatsapp {
+            background: var(--whatsapp);
+        }
+        
+        .social-links a.youtube {
+            background: var(--youtube);
+        }
+        
+        .social-links a.discord {
+            background: var(--discord);
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-5px) scale(1.1);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(168, 85, 247, 0.2);
+            color: #b0a0d0;
+            font-size: 0.95rem;
+        }
+        
+        /* Mobile Menu Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 90;
+            display: none;
+        }
+        
+        .overlay.active {
+            display: block;
+        }
+        
+        /* Responsive Design for Tablets */
+        @media (min-width: 768px) {
+            .container {
+                max-width: 720px;
+            }
+            
+            .menu-toggle, .close-menu {
+                display: none;
+            }
+            
+            .nav-links {
+                position: static;
+                width: auto;
+                height: auto;
+                background: transparent;
+                flex-direction: row;
+                justify-content: flex-end;
+                padding-top: 0;
+                box-shadow: none;
+            }
+            
+            .nav-links li {
+                margin: 0 0 0 25px;
+                width: auto;
+                opacity: 1;
+                transform: none;
+            }
+            
+            .nav-links a {
+                padding: 8px 0;
+                font-size: 1.1rem;
+                border-bottom: none;
+                position: relative;
+            }
+            
+            .nav-links a::before {
+                display: none;
+            }
+            
+            .nav-links a::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background: var(--accent);
+                transition: width 0.3s;
+            }
+            
+            .nav-links a:hover::after {
+                width: 100%;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .features-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+            
+            .version-cards {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            
+            .version-card {
+                flex: 1 1 calc(50% - 15px);
+                min-width: 300px;
+            }
+            
+            .video-grid {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            
+            .video-card {
+                flex: 1 1 calc(50% - 15px);
+            }
+            
+            .steps {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            
+            .step {
+                flex: 1 1 calc(50% - 15px);
+            }
+        }
+        
+        /* Responsive Design for Desktops */
+        @media (min-width: 992px) {
+            .container {
+                max-width: 960px;
+            }
+            
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .version-card {
+                flex: 1 1 calc(33.333% - 20px);
+            }
+            
+            .video-card {
+                flex: 1 1 calc(33.333% - 20px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Enhanced Navigation -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <div class="logo-text">LAST <span>CITY</span></div>
+                </div>
+                
+                <div class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                
+                <ul class="nav-links" id="navLinks">
+                    <li class="close-menu" id="closeMenu"><i class="fas fa-times"></i></li>
+                    <li><a href="#home">الصفحة الرئيسية</a></li>
+                    <li><a href="#features">مميزات السرفر</a></li>
+                    <li><a href="#versions">النسخ المميزة</a></li>
+                    <li><a href="#videos">فيديوهات التركيب</a></li>
+                    <li><a href="#instructions">طريقة التثبيت</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>مرحبا بك في سرفر LAST CITY المغربي</h1>
+                <p>أول وأفضل سرفر سامب في المغرب، يوفر تجربة لعب واقعية خالية من الهكر والغش</p>
+                <a href="#features" class="btn">اكتشف مميزاتنا <i class="fas fa-arrow-down"></i></a>
+                
+                <div class="social-icons">
+                    <a href="https://chat.whatsapp.com/G0qF2svgb973Zk4CKnfPH7?mode=r_t" class="social-icon whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://youtube.com/@dragon-qm7su?si=1_IWhFeGBMio0dWx" class="social-icon youtube" target="_blank">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://discord.gg/YDcs6YhV" class="social-icon discord" target="_blank">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">ما يميز سرفرنا</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>حماية ضد الهكر</h3>
+                    <p>سرفرنا لا يدعم أي نوع من الهكر أو الغش، مع نظام حماية متطور يحمي اللعبة من المخترقين ويضمن تجربة لعب عادلة للجميع.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe-africa"></i>
+                    </div>
+                    <h3>حياة واقعية متطورة</h3>
+                    <p>نقدم تجربة حياة واقعية متكاملة أفضل من السرفرات الأخرى، مع أنظمة متطورة للوظائف، العقارات، الاقتصاد، والعلاقات الاجتماعية.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>مجتمع مغربي نشيط</h3>
+                    <p>انضم إلى أكبر مجتمع مغربي للعبة سامب، مع إدارة محترفة ولاعبين ودودين يضمنون لك تجربة لعب ممتعة.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3>تحديثات مستمرة</h3>
+                    <p>نعمل باستمرار على تطوير السرفر وإضافة محتوى جديد، مع تحديثات أسبوعية تضمن تجربة لعب دائمًا جديدة ومثيرة.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Versions Section with New Names -->
+    <section class="versions" id="versions">
+        <div class="container">
+            <h2 class="section-title">النسخ المميزة</h2>
+            <div class="version-cards">
+                <!-- Version 1 -->
+                <div class="version-card">
+                    <div class="card-header">
+                        <h3>SA-MP NORMAL</h3>
+                        <div class="version">الإصدار 1.0</div>
+                    </div>
+                    <div class="card-body">
+                        <ul class="features-list">
+                            <li><i class="fas fa-star"></i> تجربة لعب متوازنة وسلسة</li>
+                            <li><i class="fas fa-star"></i> واجهة مستخدم أنيقة وسهلة</li>
+                            <li><i class="fas fa-star"></i> أداء محسن للجوالات المتوسطة</li>
+                            <li><i class="fas fa-star"></i> دعم كامل لسرفر LAST CITY</li>
+                            <li><i class="fas fa-star"></i> دعم نظام الكيبورد للعب</li>
+                            <li><i class="fas fa-star"></i> تحديثات شهرية</li>
+                        </ul>
+                        <a href="#" class="download-btn">تحميل النسخة <i class="fas fa-download"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Version 2 -->
+                <div class="version-card">
+                    <div class="card-header">
+                        <h3>SA-MP FIVEM</h3>
+                        <div class="version">الإصدار 1.2</div>
+                    </div>
+                    <div class="card-body">
+                        <ul class="features-list">
+                            <li><i class="fas fa-gem"></i> كل ميزات النسخة العادية</li>
+                            <li><i class="fas fa-gem"></i> جرافيك واقعي عالي الدقة</li>
+                            <li><i class="fas fa-gem"></i> أدوات حصرية للاعبين</li>
+                            <li><i class="fas fa-gem"></i> نظام تصويب تلقائي متقدم</li>
+                            <li><i class="fas fa-gem"></i> خفة وسلاسة في اللعبة</li>
+                            <li><i class="fas fa-gem"></i> تدعم إضافة المودات</li>
+                            <li><i class="fas fa-gem"></i> تحديثات أسبوعية</li>
+                        </ul>
+                        <a href="#" class="download-btn">تحميل النسخة <i class="fas fa-download"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Version 3 -->
+                <div class="version-card">
+                    <div class="card-header">
+                        <h3>SA-MP OLD</h3>
+                        <div class="version">الإصدار 1.3</div>
+                    </div>
+                    <div class="card-body">
+                        <ul class="features-list">
+                            <li><i class="fas fa-crown"></i> كل ميزات النسختين السابقتين</li>
+                            <li><i class="fas fa-crown"></i> نظام تصويب تلقائي متقدم (AimBot)</li>
+                            <li><i class="fas fa-crown"></i> أدوات إدارية حصرية</li>
+                            <li><i class="fas fa-crown"></i> إشعارات مخصصة</li>
+                            <li><i class="fas fa-crown"></i> الدخول السريع للعبة</li>
+                            <li><i class="fas fa-crown"></i> خالية من المشاكل</li>
+                            <li><i class="fas fa-crown"></i> تحديثات يومية</li>
+                        </ul>
+                        <a href="#" class="download-btn">تحميل النسخة <i class="fas fa-download"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Videos Section -->
+    <section class="videos" id="videos">
+        <div class="container">
+            <h2 class="section-title">فيديوهات التركيب</h2>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <div class="video-info">
+                        <h3>طريقة تثبيت SA-MP NORMAL</h3>
+                        <p>شرح مفصل لتثبيت النسخة العادية على جميع الأجهزة</p>
+                    </div>
+                </div>
+                
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <div class="video-info">
+                        <h3>طريقة تثبيت SA-MP FIVEM</h3>
+                        <p>دليل كامل لتثبيت النسخة المطورة مع الميزات الجديدة</p>
+                    </div>
+                </div>
+                
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <div class="video-info">
+                        <h3>طريقة تثبيت SA-MP OLD</h3>
+                        <p>كيفية تثبيت النسخة الاحترافية واستخدام نظام التصويب التلقائي</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instructions Section -->
+    <section class="instructions" id="instructions">
+        <div class="container">
+            <h2 class="section-title">طريقة التثبيت</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>تحميل التطبيق</h3>
+                    <p>قم بتحميل النسخة المفضلة لك من خلال الضغط على زر التحميل الخاص بها في قسم النسخ المميزة</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>تثبيت التطبيق</h3>
+                    <p>بعد التحميل، اذهب إلى ملفاتك وقم بتثبيت التطبيق. قد تحتاج إلى تفعيل خيار "التثبيت من مصادر غير معروفة" في إعدادات الأمان</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>ابدأ اللعب</h3>
+                    <p>افتح التطبيق، أدخل بيانات سرفر LAST CITY واستمتع بتجربة لعب فريدة وممتعة مع مجتمعنا</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2 class="section-title">الأسئلة الشائعة</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        هل هذه النسخ مجانية بالكامل؟
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        نعم، جميع النسخ الثلاث مجانية بالكامل ولا تتضمن أي تكاليف خفية. نحن نؤمن بمجتمع قوي وندعم لاعبينا.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        ما الفرق بين النسخ الثلاث؟
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        النسخة العادية (NORMAL) توفر تجربة متوازنة، النسخة FIVEM تضيف رسومات وميزات إضافية، والنسخة OLD تحتوي على نظام تصويب تلقائي وميزات حصرية.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        كيف أتأكد من أن التطبيق آمن؟
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        جميع التطبيقات تم فحصها بواسطة برامج مكافحة الفيروسات وهي آمنة تماماً للاستخدام. نحن نضمن خلوها من أي برمجيات خبيثة.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        هل يمكنني استخدام حسابي الحالي؟
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        نعم، يمكنك استخدام نفس حسابك على سرفر LAST CITY بدون أي مشاكل. جميع البيانات محفوظة على السرفر.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        كيف أحصل على الدعم الفني؟
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        يمكنك التواصل مع فريق الدعم عبر:
+                        <div style="margin-top: 15px; display: flex; gap: 15px; flex-wrap: wrap;">
+                            <a href="https://discord.gg/YDcs6YhV" class="btn" style="background: var(--discord); padding: 10px 20px; font-size: 0.9rem;" target="_blank">
+                                <i class="fab fa-discord"></i> Discord
+                            </a>
+                            <a href="https://chat.whatsapp.com/G0qF2svgb973Zk4CKnfPH7?mode=r_t" class="btn" style="background: var(--whatsapp); padding: 10px 20px; font-size: 0.9rem;" target="_blank">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>عن LAST CITY</h3>
+                    <p>سرفر LAST CITY هو أول وأفضل سرفر سامب في المغرب، يقدم تجربة لعب واقعية فريدة مع مجتمع نشط وودود. نسعى دائماً لتقديم الأفضل للاعبينا.</p>
+                    <div class="social-links">
+                        <a href="https://discord.gg/YDcs6YhV" class="discord" target="_blank">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="https://chat.whatsapp.com/G0qF2svgb973Zk4CKnfPH7?mode=r_t" class="whatsapp" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://youtube.com/@dragon-qm7su?si=1_IWhFeGBMio0dWx" class="youtube" target="_blank">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>النسخ المميزة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#versions"><i class="fas fa-download"></i> SA-MP NORMAL</a></li>
+                        <li><a href="#versions"><i class="fas fa-download"></i> SA-MP FIVEM</a></li>
+                        <li><a href="#versions"><i class="fas fa-download"></i> SA-MP OLD</a></li>
+                        <li><a href="#faq"><i class="fas fa-question-circle"></i> الأسئلة الشائعة</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>اتصل بنا</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://discord.gg/YDcs6YhV" target="_blank"><i class="fab fa-discord"></i> Discord</a></li>
+                        <li><a href="https://chat.whatsapp.com/G0qF2svgb973Zk4CKnfPH7?mode=r_t" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+                        <li><a href="https://youtube.com/@dragon-qm7su?si=1_IWhFeGBMio0dWx" target="_blank"><i class="fab fa-youtube"></i> YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>جميع الحقوق محفوظة &copy; 2025 LAST CITY SA-MP MOBILE | السرفر المغربي الأول</p>
+                <p>Designed with <i class="fas fa-heart" style="color: var(--accent);"></i> for Gamers</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Functionality
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        const closeMenu = document.getElementById('closeMenu');
+        const overlay = document.getElementById('overlay');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeMenu.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+        
+        overlay.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // FAQ Functionality
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+        
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Close mobile menu if open
+                navLinks.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add animation on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.feature-card, .version-card, .video-card, .step');
+            
+            elements.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 50) {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // Initialize animations
+        document.querySelectorAll('.feature-card, .version-card, .video-card, .step').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s, transform 0.6s';
+        });
+        
+        // Event listeners
+        window.addEventListener('load', animateOnScroll);
+        window.addEventListener('scroll', animateOnScroll);
+        
+        // Enhanced mobile menu animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const navItems = document.querySelectorAll('.nav-links li');
+            
+            menuToggle.addEventListener('click', function() {
+                navItems.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateX(0)';
+                    }, 100 * index);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
